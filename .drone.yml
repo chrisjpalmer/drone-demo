@@ -10,8 +10,10 @@ steps:
   image: alpine
   commands:
   - echo hello world
+  - echo "hi there step 2" > message.txt
 
 - name: fr
   image: alpine
   commands:
   - echo bonjour monde
+  - cat message.txt
