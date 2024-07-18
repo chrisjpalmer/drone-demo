@@ -1,0 +1,20 @@
+
+kind: pipeline
+type: docker
+name: greeting
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: start
+  image: alpine
+  commands:
+    - echo "Building {{ .input.repo_name }}"
+
+- name: merge
+  image: alpine/git
+  commands:
+    - git config user.email drone
+    - echo "Merging \"{{ .input.repo_branch }}\"..."
+    - git merge "{{ .input.repo_branch }}" --no-ff --no-squash --no-edit
